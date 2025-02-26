@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Square Root Calculator</title>
+</head>
+<body>
+    <h1>Square Root Calculator</h1>
+    <button id="calculate">Calculate Square Root</button>
+    <p id="result"></p>
+
+    <script>
+        function squareRoot(number) {
+            if (number < 0) {
+                throw new Error("Cannot calculate the square root of a negative number.");
+            }
+            if (number === 0 || number === 1) {
+                return number; // The square root of 0 is 0, and the square root of 1 is 1.
+            }
+
+            let guess = number / 2; // Initial guess
+            let epsilon = 0.00001; // Precision level
+
+            while (Math.abs(guess * guess - number) > epsilon) {
+                guess = (guess + number / guess) / 2; // Update guess
+            }
+
+            return guess;
+        }
+
+        document.getElementById('calculate').addEventListener('click', function() {
+            const userInput = prompt("Enter a number to calculate its square root:");
+            const number = parseFloat(userInput);
+
+            if (isNaN(number)) {
+                document.getElementById('result').innerText = "Please enter a valid number.";
+                return;
+            }
+
+            try {
+                const result = squareRoot(number);
+                document.getElementById('result').innerText = `The square root of ${number} is approximately ${result}.`;
+            } catch (error) {
+                document.getElementById('result').innerText = error.message;
+            }
+        });
+    </script>
+</body>
+</html>
