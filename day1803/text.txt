@@ -1,0 +1,59 @@
+Types of function
+    1. Named function   :A function that has a name and can be reused multiple times.
+    2. Arrow Function   :Arrow functions were introduced in ES6 (ECMAScript 2015) as 
+                         a more concise way to write functions in JavaScript. 
+                         They provide a cleaner syntax and have different behavior 
+                         compared to regular functions,especially regarding the this keyword.
+    3. IIFE (Immediately Invoked Function Expression)  :
+                        function that runs immediately after it is defined. 
+                        It helps avoid polluting the global scope and is often 
+                        used for initialization or encapsulating variables.
+    4. Callback Function : Callbacks are commonly used in asynchronous operations like API calls, 
+                           file reading, or timers.
+                           A callback function is a function passed as an argument to another
+                           function and is executed later, usually after some operation is completed.
+    5. Higher order function :Takes another function as an argument, or Returns a function
+                            built-in higher-order functions:map,filte,reduce
+    6. First-Class Function  :       They can be assigned to variables.
+                                        They can be passed as arguments.
+                                            They can be returned from functions.
+    7. Function Expression  : A function stored inside a variable .
+    8. recursion : 
+    9. Anonymous Function : function without a name, often used as an argument.
+
+
+
+ES6 feature;
+   
+- let & const – Block-scoped variables (let mutable, const immutable).
+- Arrow Functions (=>) – Shorter syntax, inherits this from parent scope.
+- Template Literals – Use `Hello, ${name}!` for string interpolation.
+- Default Parameters – Set default values in function parameters.
+- Destructuring – Extract values from arrays/objects easily.
+- Spread (...) & Rest (...) Operators – Expand or gather values dynamically.
+- Object Property Shorthand – { name, age } instead of { name: name, age: age }.
+- Object Method Shorthand – Define object methods without function keyword.
+- for...of Loop – Iterates over arrays, strings, Set, Map, etc.
+- Promises – Handle async operations without callback hell.
+   Classes – OOP-style syntax using class and constructor.
+   Modules (import/export) – Reusable code across files.
+   Set & Map – Set stores unique values, Map holds key-value pairs.
+
+
+Microtask Queue vs Callback Queue
+Feature 	        Microtask  Queue    	            Callback Queue
+Used by	        Promises, queueMicrotask()  	setTimeout, setInterval, Events
+Priority	          Higher	                         Lower
+Execution Timing	Before Callback Queue	        After Microtasks are done
+
+
+
+
+
+
+
+
+
+
+
+
