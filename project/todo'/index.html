@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex items-center justify-center h-screen bg-gray-100">
+
+    <div class="bg-white p-6 rounded-lg shadow-lg w-96">
+        <h2 class="text-xl font-semibold text-center mb-4">Task Manager</h2>
+        
+        <div class="flex space-x-2">
+            <input type="text" id="taskInput" placeholder="Enter task" 
+                class="flex-1 p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-400">
+            <button onclick="addTask()" 
+                class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition">
+                Add
+            </button>
+        </div>
+
+        <ul id="taskList" class="mt-4 space-y-2"></ul>
+    </div>
+
+    <script>
+      
+        function loadTasks() {
+            const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+            const taskList = document.getElementById("taskList");
+            taskList.innerHTML = "";
+            tasks.forEach((task, index) => {
+                taskList.innerHTML += `
+                    <li class="flex justify-between items-center bg-gray-200 p-2 rounded">
+                        <span class="${task.completed ? 'line-through text-gray-500' : ''}">${task.text}</span>
+                        <div class="space-x-2">
+                            <button onclick="toggleTask(${index})" class="text-green-500">✔</button>
+                            <button onclick="deleteTask(${index})" class="text-red-500">✖</button>
+                        </div>
+                    </li>
+                `;
+            });
+        }
+
+     
+        function addTask() {
+            const taskInput = document.getElementById("taskInput");
+            const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+            if (taskInput.value.trim()) {
+                tasks.push({ text: taskInput.value, completed: false });
+                localStorage.setItem("tasks", JSON.stringify(tasks));
+                taskInput.value = "";
+                loadTasks();
+            } else {
+                alert("Please enter a task!");
+            }
+        }
+
+     
+        function toggleTask(index) {
+            const tasks = JSON.parse(localStorage.getItem("tasks"));
+            tasks[index].completed = !tasks[index].completed;
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+            loadTasks();
+        }
+
+        
+        function deleteTask(index) {
+            const tasks = JSON.parse(localStorage.getItem("tasks"));
+            tasks.splice(index, 1);
+            localStorage.setItem("tasks", JSON.stringify(tasks));
+            loadTasks();
+        }
+
+        // Load tasks on page load
+        loadTasks();
+    </script>
+
+</body>
+</html>
